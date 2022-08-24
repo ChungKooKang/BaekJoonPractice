@@ -1,34 +1,32 @@
 #include <iostream>
 using namespace std;
+void SelfNumber();
 int main()
 {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
+	SelfNumber();
+}
 
-	const int DIVIDEVALUE{ 42 };
-	int input, count;
-	int array[10];
-
-	for (int i = 0; i < 10; i++)
+void SelfNumber()
+{
+	int num;
+	bool checker{false};
+	for (int i = 1; i < 10001; i++)
 	{
-		cin >> input;
+		num = i;
 
-		array[i] = input % DIVIDEVALUE;
-
-		for (int j = 0; j < i; j++)
+		for (int j = 1; j < num; j++)
 		{
-			if (array[j] == array[i])
+			if (num == j + (j - j % 10000) / 10000 + (j - j % 1000) / 1000 + (j - j % 100) / 100 + (j - j % 10)/10 + j / 10)
 			{
-				count--;
-				break;
+				checker = false;
 			}
+
 		}
-
-		count++;
-
+		if (checker)
+		{
+			cout << num << endl;
+		}
+		checker = true;
+		
 	}
-
-	cout << count;
-
-
 }
