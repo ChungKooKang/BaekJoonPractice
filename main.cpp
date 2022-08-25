@@ -1,31 +1,33 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+void SelfNumber();
 int main()
 {
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
-	char array[1000]{};
-	int caseNum, sum{}, beforeScore{};
-	cin >> caseNum;
-	for (int i = 0; i < caseNum; i++)
+	SelfNumber();
+}
+
+void SelfNumber()
+{
+	int num;
+	bool checker{false};
+	for (int i = 1; i < 10001; i++)
 	{
-		cin >> array;
-		
-		for (int j = 0; j < ; j++)
+		num = i;
+
+		for (int j = 1; j < num; j++)
 		{
-			if (array[j] == 'O')
+			if (num == j + (j % 100000) / 10000 + (j % 10000) / 1000 + (j % 1000) / 100 + (j % 100)/10 + (j % 10))
 			{
-				beforeScore++;
-				sum += beforeScore;
+				checker = false;
 			}
-			else
-			{
-				beforeScore = 0;
-			}
+
 		}
+		if (checker)
+		{
+			cout << num << endl;
+		}
+		checker = true;
 		
 	}
-	cout << sum;
-	
 }
