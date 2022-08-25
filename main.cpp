@@ -1,34 +1,31 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 int main()
 {
 	cin.tie(NULL);
 	ios::sync_with_stdio(false);
-
-	const int DIVIDEVALUE{ 42 };
-	int input, count;
-	int array[10];
-
-	for (int i = 0; i < 10; i++)
+	char array[1000]{};
+	int caseNum, sum{}, beforeScore{};
+	cin >> caseNum;
+	for (int i = 0; i < caseNum; i++)
 	{
-		cin >> input;
-
-		array[i] = input % DIVIDEVALUE;
-
-		for (int j = 0; j < i; j++)
+		cin >> array;
+		
+		for (int j = 0; j < ; j++)
 		{
-			if (array[j] == array[i])
+			if (array[j] == 'O')
 			{
-				count--;
-				break;
+				beforeScore++;
+				sum += beforeScore;
+			}
+			else
+			{
+				beforeScore = 0;
 			}
 		}
-
-		count++;
-
+		
 	}
-
-	cout << count;
-
-
+	cout << sum;
+	
 }
