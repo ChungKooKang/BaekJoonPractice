@@ -1,33 +1,23 @@
 #include <iostream>
-#include <algorithm>
+#include <string>
+#include <cstring>
 using namespace std;
-void SelfNumber();
+
 int main()
 {
-	SelfNumber();
-}
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+	string test{"碍面备"};
+	basic_string <char> test2{"碍面备"};
+	cout << "test1" << endl;
+	cout << test.length() << endl;
+	cout << test.size();
+	cout << endl << endl;
 
-void SelfNumber()
-{
-	int num;
-	bool checker{false};
-	for (int i = 1; i < 10001; i++)
-	{
-		num = i;
+	cout << "test2" << endl;
+	cout << test2.length() << endl;
+	cout << test2.size() << endl;
 
-		for (int j = 1; j < num; j++)
-		{
-			if (num == j + (j % 100000) / 10000 + (j % 10000) / 1000 + (j % 1000) / 100 + (j % 100)/10 + (j % 10))
-			{
-				checker = false;
-			}
 
-		}
-		if (checker)
-		{
-			cout << num << endl;
-		}
-		checker = true;
-		
-	}
+
 }
