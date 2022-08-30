@@ -1,33 +1,34 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
-void SelfNumber();
+
 int main()
 {
-	SelfNumber();
-}
+	
 
-void SelfNumber()
-{
-	int num;
-	bool checker{false};
-	for (int i = 1; i < 10001; i++)
+	int input, count{}, digit{1};
+	cin >> input;
+
+	for (int i = 1; i < input + 1; i++)
 	{
-		num = i;
-
-		for (int j = 1; j < num; j++)
+		int temp{ i };
+		for (int j = 0; j < 4; j++)
 		{
-			if (num == j + (j % 100000) / 10000 + (j % 10000) / 1000 + (j % 1000) / 100 + (j % 100)/10 + (j % 10))
+			temp = temp / 10;
+			if (temp)
 			{
-				checker = false;
+				digit++;
 			}
+		}
 
-		}
-		if (checker)
+
+		if (digit == 1 || digit == 2 || (digit ==3 &&( (i % 100 / 10 - i % 10) == (i /100 - i % 100 / 10) ))) // (십의 자리 - 일의 자리) == (백의 자리 - 십의 자리)
 		{
-			cout << num << endl;
+			count++;
 		}
-		checker = true;
-		
+
+		// 초기화
+
+		digit = 1;
 	}
+	cout << count;
 }
