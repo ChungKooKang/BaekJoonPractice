@@ -16,9 +16,9 @@ int main()
 
 	// input
 	cin >> input;
-	
+	int len = strlen(input);
 	// count the number of alphabet
-	for (int i = 0; i < (int)strlen(input); i++)
+	for (int i = 0; i < len; i++)
 	{
 		// Capital letter checking
 		if (input[i] < 'a')
@@ -38,7 +38,6 @@ int main()
 				max = counter[i];
 				maxIndex = i;
 			}
-				
 			else if (max == counter[i])
 			{
 				max = -1;
