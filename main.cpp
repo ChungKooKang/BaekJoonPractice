@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -10,52 +10,36 @@ int main()
 	ios::sync_with_stdio(false);
 
 	// variable declaration
-	char input[1000000];
-	int counter[26]{};
-	int max{ -1 }, maxIndex{};
+	string input;
+	int count{ 1 };
 
-	// input
-	cin >> input;
+	// get one line
+	getline(cin, input);
 
-	// count the number of alphabet
-	int len = strlen(input);
-	for (int i = 0; i < len; i++)
+	// checking empty
+	if (input.empty())
 	{
-		// Capital letter checking
-		if (input[i] < 'a')
-			counter[input[i] - 65]++;
-
-		// samall letter checking
-		if (input[i] >= 'a')
-			counter[input[i] - 97]++;
+		cout << '0';
+		return 0;
 	}
 
-	// figure out whether it is max
-	for (int i = 0; i < 26; i++)
+	// counting space
+	for (int i = 0; i < input.length(); i++)
 	{
-		if (counter[i] != 0)
-			if (max < counter[i])
-			{
-				max = counter[i];
-				maxIndex = i;
-			}
-	}
-	for (int i = 0; i < 26; i++)
-	{
-		if (i != maxIndex)
+		if (input[i] == ' ')
 		{
-			if (counter[i] == max)
-			{
-				max = -1;
-				break;
-			}
+			count++;
 		}
 	}
 
-	// output
-	if (max != -1)
-		cout << (char)(maxIndex + 65);
-	else
-		cout << '?';
+	// checking first space
+	if (input[0] == ' ')
+		count--;
 
+	// checking last space
+	if (input[input.length() - 1] == ' ')
+		count--;
+
+	// output
+	cout << count;
 }
