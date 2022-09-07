@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int ChangeOrder(int input);
+
 int main()
 {
 	// iostream speed up
@@ -10,36 +12,22 @@ int main()
 	ios::sync_with_stdio(false);
 
 	// variable declaration
-	string input;
-	int count{ 1 };
+	int firstInput, secondInput;
 
-	// get one line
-	getline(cin, input);
+	// user input
+	cin >> firstInput >> secondInput;
 
-	// checking empty
-	if (input.empty())
-	{
-		cout << '0';
-		return 0;
-	}
+	// change the order of number
+	firstInput = ChangeOrder(firstInput);
+	secondInput = ChangeOrder(secondInput);
 
-	// counting space
-	for (int i = 0; i < input.length(); i++)
-	{
-		if (input[i] == ' ')
-		{
-			count++;
-		}
-	}
+	// checking bigger & output
+	cout <<( firstInput >= secondInput ? firstInput : secondInput);
 
-	// checking first space
-	if (input[0] == ' ')
-		count--;
+}
 
-	// checking last space
-	if (input[input.length() - 1] == ' ')
-		count--;
-
-	// output
-	cout << count;
+int ChangeOrder(int input)
+{
+	input = input / 100 + input / 10 % 10 * 10 + input % 10 * 100;
+	return input;
 }
