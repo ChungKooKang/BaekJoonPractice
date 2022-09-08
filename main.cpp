@@ -11,23 +11,19 @@ int main()
 
 	// variable declaration
 	string input;
-	int time{};
+	int count{};
 
 	// input
 	cin >> input;
 
-	// change to num + calculating time
+	// checking 크로아티아
 	for (int i = 0; i < input.length(); i++)
 	{
-		if (input[i] != 'Z')
-			if (input[i] - 'A' > 17)
-				time += ((input[i] - 'A' - 1) / 3 + 3);
-			else
-			time += ((input[i] - 'A') / 3) + 3;
-		else
-			time += 10;
+		input.replace()
 	}
 
+	// counting
+
 	// output
-	cout << time << endl;
+
 }
