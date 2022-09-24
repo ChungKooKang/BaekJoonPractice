@@ -1,29 +1,25 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 int main()
 {
-	// iostream speed up
-	cin.tie(NULL);
-	ios::sync_with_stdio(false);
-
-	// variable declaration
+	vector<string> croatian = { "c=", "c-", "d-", "lj", "nj", "s=", "z=" };
+	int idx;
 	string input;
-	int count{};
-
-	// input
 	cin >> input;
 
-	// checking 크로아티아
-	for (int i = 0; i < input.length(); i++)
+	for (int i = 0; i < croatian.size(); i++)
 	{
-		input.replace();
+		while (1)
+		{
+			idx = input.find(croatian[i]);
+			if (idx == string::npos)
+				break;
+			input.replace(idx, croatian[i].length(), "#");
+		}
 	}
-
-	// counting
-
-	// output
-
+	cout << input.length();
 }
