@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	vector<string> croatian = { "c=", "c-", "d-", "lj", "nj", "s=", "z=" };
+	vector<string> croatian = { "c=", "c-", "dz=","d-", "lj", "nj", "s=", "z="};
 	int idx;
 	string input;
 	cin >> input;
@@ -15,9 +15,9 @@ int main()
 	{
 		while (1)
 		{
-			idx = input.find(croatian[i]);
-			if (idx == string::npos)
-				break;
+			idx = input.find(croatian[i]);	// string::find function is used to find the first character of the first match.
+			if (idx == string::npos) break;
+
 			input.replace(idx, croatian[i].length(), "#");
 		}
 	}
