@@ -46,13 +46,13 @@ int main()
 		cin >> inputString;
 		if (inputString.length() > 2)
 		{
-			for (int checkingLetter = 0; checkingLetter < inputString.length(); checkingLetter++)
+			for (int checkingLetter = 2; checkingLetter < inputString.length(); checkingLetter++) // 0부터 검사할 필요가 없음 2부터해도 됨
 			{
-				for (int sameStart = 0; sameStart < checkingLetter; sameStart++)
+				for (int isSameStart = 0; isSameStart < checkingLetter -1; isSameStart++)	// checkingLetter 바로 전은 검사할 필요 없음 전전까지만 하면 됨
 				{
-					if (inputString[checkingLetter] == inputString[sameStart])
+					if (inputString[checkingLetter] == inputString[isSameStart])
 					{
-						for (int i = sameStart; i < checkingLetter; i++)
+						for (int i = isSameStart; i < checkingLetter; i++)
 						{
 							if (inputString[i] != inputString[checkingLetter])
 								checker = false;
