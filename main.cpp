@@ -36,36 +36,37 @@ using namespace std;
 
 int main()
 {
-	int inputNum;
-	int count{};
-	bool checker{true};
-	string inputString;
-	cin >> inputNum;
-	for (int wordNum = 0; wordNum < inputNum; wordNum++)
+	int n;
+	int cnt = 0;
+	string str;
+	cin >> n;
+
+	for (int i = 0; i < n; i++)
 	{
-		cin >> inputString;
-		if (inputString.length() > 2)
+		cin >> str;
+		int size = str.length();
+		bool flag = true;
+
+		for (int j = 0; j < size; j++)
 		{
-			for (int checkingLetter = 2; checkingLetter < inputString.length(); checkingLetter++) // 0부터 검사할 필요가 없음 2부터해도 됨
+			for (int k = 0; k < j; k++)
 			{
-				for (int isSameStart = 0; isSameStart < checkingLetter -1; isSameStart++)	// checkingLetter 바로 전은 검사할 필요 없음 전전까지만 하면 됨
+				if (str[j] != str[j - 1] && str[j] == str[k])
 				{
-					if (inputString[checkingLetter] == inputString[isSameStart])
-					{
-						for (int i = isSameStart; i < checkingLetter; i++)
-						{
-							if (inputString[i] != inputString[checkingLetter])
-								checker = false;
-						}
-					}
+					flag = false;
+					break;
 				}
 			}
+
+			if (flag == false)
+			{
+				break;
+			}
 		}
-
-		if (checker == true) count++;
-
-		checker = true;
+		if (flag) cnt++;
 	}
 
-	cout << count;
+	cout << cnt;
+
+	return 0;
 }
