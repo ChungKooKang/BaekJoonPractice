@@ -1,72 +1,76 @@
 #include <iostream>
-#include <string>
 
 /*
 <문제설명>
 
-번호	: 1316
+번호	: 1712번
 
-이름	: 그룹 단어 체커
+이름	: 손익분기점
 
 문제설명:
-그룹 단어란 단어에 존재하는 모든 문자에 대해서, 각 문자가 연속해서 나타나는 경우만을 말한다.
-예를 들면, ccazzzzbb는 c, a, z, b가 모두 연속해서 나타나고, kin도 k, i, n이 연속해서 나타나기
-때문에 그룹 단어이지만, aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.단어 N개를
-입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.
+원드전자는 노트북을 제조하고 판매하는 회사이다. 노트북 판매 대수에 상관없이 매년 임대료, 재산세,
+보험료, 급여 등 A만원의 고정 비용이 들며, 한 대의 노트북을 생산하는 데에는 재료비와 인건비 등 총
+B만원의 가변 비용이 든다고 한다.
+
+예를 들어 A = 1,000, B = 70이라고 하자. 이 경우 노트북을 한 대 생산하는 데는 총 1,070만원이 들며,
+열 대 생산하는 데는 총 1,700만원이 든다.
+
+노트북 가격이 C만원으로 책정되었다고 한다. 일반적으로 생산 대수를 늘려 가다 보면 어느 순간 총 수입
+( 판매비용 )이 총 비용( = 고정비용 + 가변비용 )보다 많아지게 도니다. 최초로 총 수입이 총 비용보다 
+많아져 이익이 발생하는 지점을 손익분기점( BREAK-EVEN POINT )이라고 한다.
+
+A, B, C가 주어졌을 때, 손익분기점을 구하는 프로그램을 작성하시오.
 
 입력	:
-첫째 줄에 단어의 개수 N이 들어온다. N은 100보다 작거나 같은 자연수이다. 둘째 줄부터 N개의 줄에
-단어가 들어온다. 단어는 알파벳 소문자로만 되어있고 중복되지 않으며, 길이는 최대 100이다.
+첫째 줄에 A, B, C가 빈 칸을 사이에 두고 선서대로 주어진다. A, B, C는 21억 이하의 자연수이다.
 
 출력	:
-첫째 줄에 그룹 단어의 개수를 출력한다.
+첫째 줄에 손익분기점 즉 최초로 이익이 발생하는 판매량을 출력한다. 손익분기점이 존재하지 않으면 -1
+을 출력한다.
 
 */
 
 /*
 <문제풀이전략>
-
-단어 길이가 1,2 면 검사 필요 x
-단어 길이 3 부터 글자가 처음부터 같은게 있는지 확인
-있으면 같은 문자부터 지금 문자같이 다 같은 문자인지 확인
-
+고정비			: fixed
+유흥비			: flexable
+노트북 가격		: cost
+노트북 판매 수	: sales
+BREAK-EVEN POINT: breakEven
+if(c * x >= a + b * x)
+{
+	breakEven = x;
+}
 */
 
 using namespace std;
 
 int main()
 {
-	int n;
-	int cnt = 0;
-	string str;
-	cin >> n;
+	// 변수 선언
+	int fixed;
+	int flexable;
+	int cost;
+	int breakEven{};
+	int sales{0};
 
-	for (int i = 0; i < n; i++)
+	//a, b, c input
+	cin >> fixed >> flexable >> cost;
+
+	// 노트북 가격 > 노트북 제작비 ? 아래 반복문 : BreakEven = -1;
+	if (cost > flexable)
 	{
-		cin >> str;
-		int size = str.length();
-		bool flag = true;
-
-		for (int j = 0; j < size; j++)
+		// 반복문 x 계속 늘리기 언제까지 ? 노트북 가격 * 노트북 판매 수 >= 고정비 + 노트북 제작비 * 노트북 판매 수
+		while ( ( cost * sales ) < ( fixed + ( flexable * sales ) ))
 		{
-			for (int k = 0; k < j; k++)
-			{
-				if (str[j] != str[j - 1] && str[j] == str[k])
-				{
-					flag = false;
-					break;
-				}
-			}
-
-			if (flag == false)
-			{
-				break;
-			}
+			sales++;
 		}
-		if (flag) cnt++;
+		breakEven = sales;
 	}
-
-	cout << cnt;
-
-	return 0;
+	else
+	{
+		breakEven = -1;
+	}
+	// output
+	cout << breakEven;
 }
