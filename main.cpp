@@ -1,5 +1,3 @@
-#include <iostream>
-
 /*
 <문제설명>
 
@@ -32,45 +30,41 @@ A, B, C가 주어졌을 때, 손익분기점을 구하는 프로그램을 작성하시오.
 
 /*
 <문제풀이전략>
-고정비			: fixed
-유흥비			: flexable
-노트북 가격		: cost
-노트북 판매 수	: sales
-BREAK-EVEN POINT: breakEven
-if(c * x >= a + b * x)
-{
-	breakEven = x;
-}
-*/
+각 분수의 분자가 대각선 상에서 증가하는 방향을 표시했습니다.
+그림과 같은 방향으로 i 번째 대각선에서는 i까지 분자가 증가합니다.
+분자는 홀수 번째 대각선에서 아래로 증가, 짝수 번째 대각선에서 위로 증가하고 있습니다.
+분모는 분자의 반대 방향으로 이루어져 있어서,
+분자를 구한 후, i + 1 에서 분자를 뺀 값을 분모로 사용할 수 있습니다.
 
+i 번째 대각선에는 i개의 원소가 있으므로,
+N이 몇 번째 대각선에 있는지 파악하기 위해
+i를 순차적으로 증가시키며 빼줍니다.
+N이 i보다 작아진 경우 해당 i번째 대각선에 N 번째 원소가 존재합니다.
+
+이후 대각선의 홀 / 짝에 따라 방향을 고려하여 분자, 분모에 해당하는 최종 값을 결정합니다.
+
+*/
+#include <iostream>
 using namespace std;
 
 int main()
 {
-	// 변수 선언
-	int fixed;
-	int flexable;
-	int cost;
-	int breakEven{};
-	int sales{0};
+	int input;
+	cin >> input;
 
-	//a, b, c input
-	cin >> fixed >> flexable >> cost;
-
-	// 노트북 가격 > 노트북 제작비 ? 아래 반복문 : BreakEven = -1;
-	if (cost > flexable)
+	int i = 1;
+	while (input > i)
 	{
-		// 반복문 x 계속 늘리기 언제까지 ? 노트북 가격 * 노트북 판매 수 >= 고정비 + 노트북 제작비 * 노트북 판매 수
-		while ( ( cost * sales ) < ( fixed + ( flexable * sales ) ))
-		{
-			sales++;
-		}
-		breakEven = sales;
+		input -= i;
+		i++;
+	}
+	
+	if (i % 2 == 1)
+	{
+		cout << i + 1 - input << '/' << input << endl;
 	}
 	else
 	{
-		breakEven = -1;
+		cout << input << '/' << i + 1 - input << endl;
 	}
-	// output
-	cout << breakEven;
 }
