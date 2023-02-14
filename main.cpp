@@ -30,8 +30,26 @@ A, B, C가 주어졌을 때, 손익분기점을 구하는 프로그램을 작성하시오.
 
 /*
 <문제풀이전략>
-각 분수의 분자가 대각선 상에서 증가하는 방향을 표시했습니다.
-그림과 같은 방향으로 i 번째 대각선에서는 i까지 분자가 증가합니다.
+
+KeyPoint = "결국 몇 번째 대각선인지 파악하는게 중요하다!"
+	why? 
+	대각선 row 마다 경향이 바뀌기 떄문.
+		why?
+		경향이 언제 바뀌는지를 check! check!
+			why?
+			경향이 바뀌지 않았다는 말은 반복의 의미!
+				why?
+				반복은 코드를 줄여준다!
+
+anotherTry[1] = "몇 번째 대각선인지 파악하지 않고 문제를 풀 수 있을까?"
+	why?
+	반복 => 성능저하!
+	
+	how[1] = "다른 규칙이 있는지 확인해 보자!"
+
+anotherTry[2] = "몇 번째 대각선인지 파악하는 것의 반복을 없앨 수 있을까?"
+
+i 번째 대각선에서는 i까지 분자가 증가합니다.
 분자는 홀수 번째 대각선에서 아래로 증가, 짝수 번째 대각선에서 위로 증가하고 있습니다.
 분모는 분자의 반대 방향으로 이루어져 있어서,
 분자를 구한 후, i + 1 에서 분자를 뺀 값을 분모로 사용할 수 있습니다.
@@ -52,19 +70,19 @@ int main()
 	int input;
 	cin >> input;
 
-	int i = 1;
-	while (input > i)
+	int numOfRow = 1;
+	while (input > numOfRow)
 	{
-		input -= i;
-		i++;
+		input -= numOfRow;
+		numOfRow++;
 	}
 	
-	if (i % 2 == 1)
+	if (numOfRow % 2 == 1)
 	{
-		cout << i + 1 - input << '/' << input << endl;
+		cout << numOfRow + 1 - input << '/' << input << endl;
 	}
 	else
 	{
-		cout << input << '/' << i + 1 - input << endl;
+		cout << input << '/' << numOfRow + 1 - input << endl;
 	}
 }
